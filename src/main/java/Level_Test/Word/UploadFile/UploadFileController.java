@@ -19,6 +19,7 @@ import java.io.File;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.HashMap;
+import java.util.List;
 
 import static Level_Test.Word.Utility.Parser.GetDocStrucure;
 
@@ -63,7 +64,7 @@ public class UploadFileController {
             p.parsing(ConFile);
             String Content = p.Gethandler().toString();
             Metadata meta = p.GetMetadata();
-            String Strucure = GetDocStrucure(ConFile);
+            List<String> Strucure = GetDocStrucure(ConFile);
             HashMap<String,String> metaL= metalist.GetMetaList(meta);
             DB.InsertintoWfile(metaL.get("Author"),
                     Integer.parseInt(metaL.get("CHARACTER_COUNT")),

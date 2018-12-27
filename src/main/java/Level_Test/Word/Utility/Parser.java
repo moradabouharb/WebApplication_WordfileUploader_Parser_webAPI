@@ -43,11 +43,12 @@ public class Parser {
         inputstream.close();
     }
 
-    public static String GetDocStrucure(File F) {
-        List<Integer> titres = new ArrayList<Integer>();
-        List<String> Sections = new ArrayList<String>();
-        List<String> Currents = new ArrayList<String>();
-        String Structure = "";
+    public static List<String> GetDocStrucure(File F) {
+        List<Integer> titres = new ArrayList<>();
+        List<String> Sections = new ArrayList<>();
+        List<String> Currents = new ArrayList<>();
+        List<String> Structure = new ArrayList<>();
+        String Structuree = "";
         try {
             FileInputStream fis = new FileInputStream(F);
             XWPFDocument xdoc = new XWPFDocument(OPCPackage.open(fis));
@@ -79,7 +80,8 @@ public class Parser {
                 Currents.add(Arrays.toString(Current));
             }
             for(int i = 0 ; i<Currents.size() ; i++) {
-                Structure += Currents.get(i) + " " + Sections.get(i) +  ",";
+                Structuree = Currents.get(i) + Sections.get(i);
+                Structure.add(Structuree);
             }
         } catch (Exception ex) {
             ex.printStackTrace();

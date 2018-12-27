@@ -1,9 +1,12 @@
 package Level_Test.Word.DBmanager;
+
 import org.springframework.stereotype.Service;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.util.List;
 
 @Service
 public class DBmanager implements DBmanagerI {
@@ -27,8 +30,8 @@ public class DBmanager implements DBmanagerI {
     }
 
     @Override
-    public void InsertintoWfile(String name,int CharCount,String CreationDate,int LineCount, int PageCount,
-                                int ParaCount,String Structure, String DocContent)
+    public void InsertintoWfile(String name, int CharCount, String CreationDate, int LineCount, int PageCount,
+                                int ParaCount, List<String> Structure, String DocContent)
             throws SQLException {
         PreparedStatement ps = ConnectDB().prepareStatement
                 ("insert into Wfile(author_name,char_count,Creation_date" +
@@ -40,7 +43,7 @@ public class DBmanager implements DBmanagerI {
             ps.setInt(4,LineCount);
             ps.setInt(5,PageCount);
             ps.setInt(6,ParaCount);
-            ps.setString(7,Structure);
+            ps.setString(7, String.valueOf(Structure));
             ps.setString(8,DocContent);
             ps.executeUpdate();
         }

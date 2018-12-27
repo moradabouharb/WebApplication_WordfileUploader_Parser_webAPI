@@ -17,7 +17,7 @@ public class FileController {
     @Autowired
     FileControllerDao F;
 
-    //http://localhost:8080/api/file?all
+    //GET request: http://localhost:8080/api/file?all
     @RequestMapping(params = "all", method = RequestMethod.GET, produces = "application/json")
     public List<FileModel> GetAllFiles(){
         return F.findAll();

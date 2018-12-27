@@ -49,7 +49,7 @@ public class UploadFileController {
 
     @PostMapping("/uploadfile")
     public String uploadMultipartFile(MultipartFile file, Model model) throws IOException, TikaException, SAXException, SQLException {
-        if(file.isEmpty()){
+        if(file.isEmpty()){                     // if no file was uploaded
             return "redirect:error";
         }
         try {
@@ -66,6 +66,7 @@ public class UploadFileController {
             Metadata meta = p.GetMetadata();
             List<String> Strucure = GetDocStrucure(ConFile);
             HashMap<String,String> metaL= metalist.GetMetaList(meta);
+            //Persist data
             DB.InsertintoWfile(metaL.get("Author"),
                     Integer.parseInt(metaL.get("CHARACTER_COUNT")),
                     metaL.get("CREATION_DATE"),Integer.parseInt(metaL.get("LINE_COUNT")),

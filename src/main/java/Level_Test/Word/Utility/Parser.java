@@ -54,8 +54,10 @@ public class Parser {
             XWPFDocument xdoc = new XWPFDocument(OPCPackage.open(fis));
             List<XWPFParagraph> paragraphList = xdoc.getParagraphs();
             for (XWPFParagraph paragraph : paragraphList) {
+                // catching 'titre' style
                 if (paragraph.getStyle() != null && paragraph.getStyleID().contains("Titre")) {
                     String string = paragraph.getStyle();
+                    // regular expression
                     String pattern = "[0-9]+";
                     Pattern r = Pattern.compile(pattern);
                     Matcher m = r.matcher(string);
@@ -65,6 +67,7 @@ public class Parser {
                     }
                 }
             }
+            // implementing the list of indices
             int levels = Collections.max(titres);
             int[] Current = new int[levels];
             Arrays.fill(Current,0);
